@@ -10,7 +10,6 @@ yamlVersion: 2
 frontend:
   # The folder where the frontend scripts will run.
   path: .
-  # Specifies information about the SDK generation. If not specified, the SDK will not be generated for this frontend.
   # The directory that will be published to the CDN. It is relative to the `path` directory.
   publish: dist
   # Scripts are running in the specified `path` directory.
@@ -23,4 +22,3 @@ frontend:
     start:
       - npm install --silent
       - npm run dev --silent
-  subdomain: cyan-deliberate-boa
