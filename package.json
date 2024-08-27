@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "lint": "prettier --write src --config .prettierrc && eslint --ext .js,.ts,.svelte src --ignore-path .gitignore"
+    "lint": "prettier --check . && eslint . --ext .js,.ts,.svelte"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.1.2",
