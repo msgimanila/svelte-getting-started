@@ -34,42 +34,6 @@
   const handleClick = (buttonName) => {
     alert(`${buttonName} button clicked!`);
   };
-</script>
-
-<style>
-  /* Styling remains the same as before */
-</style>
-
-<main>
-  <div>
-    <a href="https://svelte.dev/" target="_blank">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte.js logo" class:spin={spin} />
-    </a>
-
-    <h1>Genezio + Svelte = ❤️</h1>
-
-    <div class="card">
-      <input
-        type="text"
-        class="input-box"
-        bind:value={name}
-        placeholder="Enter your name"
-      />
-      <br />
-      <br />
-      <button on:click={sayHello}>Say Hello</button>
-      <p class="read-the-docs">{response}</p>
-    </div>
-
-    <div class="clock">
-      <span>{time.toLocaleTimeString('en-US', { timeZone: 'America/New_York' })}</span>
-    </div>
-
-    <div>
-      <button class="red-button" on:click={() => handleClick('Red')}>Red Button</button>
-      <button class="button" on:click={() => handleClick('Default')}>Default Button</button>
-    </div>
-  </div>
 let currentDate = new Date();
   let selectedDate = null;
   let availableSlots = [];
@@ -132,6 +96,41 @@ let currentDate = new Date();
 
   onMount(generateCalendar);
 </script>
+<style>
+  /* Styling remains the same as before */
+</style>
+
+<main>
+  <div>
+    <a href="https://svelte.dev/" target="_blank">
+      <img src={svelteLogo} class="logo svelte" alt="Svelte.js logo" class:spin={spin} />
+    </a>
+
+    <h1>Genezio + Svelte = ❤️</h1>
+
+    <div class="card">
+      <input
+        type="text"
+        class="input-box"
+        bind:value={name}
+        placeholder="Enter your name"
+      />
+      <br />
+      <br />
+      <button on:click={sayHello}>Say Hello</button>
+      <p class="read-the-docs">{response}</p>
+    </div>
+
+    <div class="clock">
+      <span>{time.toLocaleTimeString('en-US', { timeZone: 'America/New_York' })}</span>
+    </div>
+
+    <div>
+      <button class="red-button" on:click={() => handleClick('Red')}>Red Button</button>
+      <button class="button" on:click={() => handleClick('Default')}>Default Button</button>
+    </div>
+  </div>
+
 
 <style>
   .calendar {
