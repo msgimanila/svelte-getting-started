@@ -34,7 +34,8 @@
   const handleClick = (buttonName) => {
     alert(`${buttonName} button clicked!`);
   };
-let currentDate = new Date();
+
+  let currentDate = new Date();
   let selectedDate = null;
   let availableSlots = [];
   let bookedSlots = [];
@@ -96,18 +97,18 @@ let currentDate = new Date();
 
   onMount(generateCalendar);
 
-let products = [];
+  let products = [];
   let cart = [];
 
-  // Fetch 5 random products from a free image site (Pixabay) or use pre-defined product data
+  // Fetch 5 random products from a free image site (Pixabay)
   onMount(async () => {
-    // Replace with a real API call to fetch products if needed
+    // Example: Here using static image URLs for simplicity
     products = [
-      { id: 1, name: 'Product 1', imageUrl: 'https://pixabay.com/get/57e0d741485baf14f1dc8460962e337b1c3d2e24e7e44f4e762d79ec974e_640.jpg' },
-      { id: 2, name: 'Product 2', imageUrl: 'https://pixabay.com/get/57e0d741485baf14f1dc8460962e337b1c3d2e24e7e44f4e762d79ec974e_640.jpg' },
-      { id: 3, name: 'Product 3', imageUrl: 'https://pixabay.com/get/57e0d741485baf14f1dc8460962e337b1c3d2e24e7e44f4e762d79ec974e_640.jpg' },
-      { id: 4, name: 'Product 4', imageUrl: 'https://pixabay.com/get/57e0d741485baf14f1dc8460962e337b1c3d2e24e7e44f4e762d79ec974e_640.jpg' },
-      { id: 5, name: 'Product 5', imageUrl: 'https://pixabay.com/get/57e0d741485baf14f1dc8460962e337b1c3d2e24e7e44f4e762d79ec974e_640.jpg' }
+      { id: 1, name: 'Product 1', imageUrl: 'https://cdn.pixabay.com/photo/2017/08/30/01/01/ball-2692535_960_720.jpg' },
+      { id: 2, name: 'Product 2', imageUrl: 'https://cdn.pixabay.com/photo/2017/08/30/01/01/ball-2692535_960_720.jpg' },
+      { id: 3, name: 'Product 3', imageUrl: 'https://cdn.pixabay.com/photo/2017/08/30/01/01/ball-2692535_960_720.jpg' },
+      { id: 4, name: 'Product 4', imageUrl: 'https://cdn.pixabay.com/photo/2017/08/30/01/01/ball-2692535_960_720.jpg' },
+      { id: 5, name: 'Product 5', imageUrl: 'https://cdn.pixabay.com/photo/2017/08/30/01/01/ball-2692535_960_720.jpg' }
     ];
   });
 
@@ -116,13 +117,11 @@ let products = [];
     cart = [...cart, product];
   }
 </script>
-<style>
-  /* Styling remains the same as before */
-</style>
+
 <style>
   .product-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
   }
 
@@ -130,11 +129,15 @@ let products = [];
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
   }
 
   .product img {
     max-width: 100%;
     height: auto;
+    border-radius: 8px;
   }
 
   .cart {
@@ -157,138 +160,9 @@ let products = [];
     background-color: #45a049;
   }
 </style>
+
 <main>
-  <div>
-    <a href="https://svelte.dev/" target="_blank">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte.js logo" class:spin={spin} />
-    </a>
-
-    <h1>Genezio + Svelte = ❤️</h1>
-
-    <div class="card">
-      <input
-        type="text"
-        class="input-box"
-        bind:value={name}
-        placeholder="Enter your name"
-      />
-      <br />
-      <br />
-      <button on:click={sayHello}>Say Hello</button>
-      <p class="read-the-docs">{response}</p>
-    </div>
-
-    <div class="clock">
-      <span>{time.toLocaleTimeString('en-US', { timeZone: 'America/New_York' })}</span>
-    </div>
-
-    <div>
-      <button class="red-button" on:click={() => handleClick('Red')}>Red Button</button>
-      <button class="button" on:click={() => handleClick('Default')}>Default Button</button>
-    </div>
-  </div>
-
-
-<style>
-  .calendar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Arial, sans-serif;
-  }
-
-  .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px 0;
-  }
-
-  .days-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .day {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    background: #f0f0f0;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .day.selected {
-    background: #0077cc;
-    color: white;
-  }
-
-  .day.disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
-
-  .slots {
-    margin-top: 20px;
-  }
-
-  .slot {
-    margin: 5px 0;
-    padding: 10px;
-    background: #0077cc;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .slot:hover {
-    background: #005fa3;
-  }
-</style>
-
-<div class="calendar">
-  <div class="calendar-header">
-    <button on:click={goToPreviousMonth}>&lt; Previous</button>
-    <h2>{currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}</h2>
-    <button on:click={goToNextMonth}>Next &gt;</button>
-  </div>
-
-  <div class="days-grid">
-    <!-- Render day names -->
-    {#each ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as dayName}
-      <div class="day disabled">{dayName}</div>
-    {/each}
-
-    <!-- Render days -->
-    {#each days as day, i}
-      <div
-        class="day {selectedDate && selectedDate.toDateString() === day?.toDateString() ? 'selected' : ''} {day ? '' : 'disabled'}"
-        on:click={() => day && selectDate(day)}
-      >
-        {day ? day.getDate() : ''}
-      </div>
-    {/each}
-  </div>
-
-  {#if selectedDate}
-    <div class="slots">
-      <h3>Available Slots for {selectedDate.toDateString()}</h3>
-      {#if availableSlots.length > 0}
-        {#each availableSlots as slot}
-          <button class="slot" on:click={() => bookSlot(slot)}>{slot}</button>
-        {/each}
-      {:else}
-        <p>No slots available.</p>
-      {/if}
-    </div>
-  {/if}
-</div>
-<h1>Product List</h1>
+  <h1>Product List</h1>
 
   <div class="product-list">
     {#each products as product}
