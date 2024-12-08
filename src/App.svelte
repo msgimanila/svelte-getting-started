@@ -137,5 +137,54 @@
   <button class="red-button" on:click={() => handleClick('Red')}>Red Button</button>
   <button class="button" on:click={() => handleClick('Default')}>Default Button</button>
 </div>
+<script>
+  import { onMount } from "svelte";
+
+  let time = new Date();
+
+  const updateTime = () => {
+    const localTime = new Date();
+    const nycOffset = -5; // New York City is UTC-5
+    const utc = localTime.getTime() + localTime.getTimezoneOffset() * 60000;
+    time = new Date(utc + nycOffset * 3600000);
+  };
+
+  let interval;
+
+  onMount(() => {
+    updateTime();
+    interval = setInterval(updateTime, 1000);
+
+    return () => clearInterval(interval); // Cleanup on component destroy
+  });
+</script>
+
+<style>
+  .clock {
+    font-family: "Arial", sans-serif;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin: 20px;
+  }
+
+  .digits {
+    display: inline-block;
+    animation: pulse 1s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+</style>
+
+<div class="clock">
+  <span class="digits">{time.toLocaleTimeString("en-US", { timeZone: "America/New_York" })}</span>
+</div>
 
 </main>
