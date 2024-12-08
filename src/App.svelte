@@ -98,4 +98,44 @@
       <p class="read-the-docs">{response}</p>
     </div>
   </div>
+<script>
+  const handleClick = (buttonName) => {
+    alert(`${buttonName} button clicked!`);
+  };
+</script>
+
+<style>
+  .red-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .red-button:hover {
+    background-color: darkred;
+  }
+
+  .button {
+    background-color: lightgray;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+
+  .button:hover {
+    background-color: gray;
+  }
+</style>
+
+<div>
+  <button class="red-button" on:click={() => handleClick('Red')}>Red Button</button>
+  <button class="button" on:click={() => handleClick('Default')}>Default Button</button>
+</div>
+
 </main>
