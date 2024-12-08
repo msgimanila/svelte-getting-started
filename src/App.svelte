@@ -77,18 +77,7 @@
 
 <main>
   <div>
-    <a href="https://genezio.com" target="_blank">
-      <img
-              src="https://raw.githubusercontent.com/Genez-io/graphics/main/svg/Logo_Genezio_White.svg"
-              class="logo genezio light"
-              alt="Genezio Logo"
-      />
-      <img
-              src="https://raw.githubusercontent.com/Genez-io/graphics/main/svg/Logo_Genezio_Black.svg"
-              class="logo genezio dark"
-              alt="Genezio Logo"
-      />
-    </a>
+    
     <a href="https://svelte.dev/" target="_blank">
       <img src={svelteLogo} class="logo svelte" alt="Svelte.js logo" class:spin={spin} />
     </a>
