@@ -95,11 +95,68 @@ let currentDate = new Date();
   };
 
   onMount(generateCalendar);
+
+let products = [];
+  let cart = [];
+
+  // Fetch 5 random products from a free image site (Pixabay) or use pre-defined product data
+  onMount(async () => {
+    // Replace with a real API call to fetch products if needed
+    products = [
+      { id: 1, name: 'Product 1', imageUrl: 'https://pixabay.com/get/57e0d741485baf14f1dc8460962e337b1c3d2e24e7e44f4e762d79ec974e_640.jpg' },
+      { id: 2, name: 'Product 2', imageUrl: 'https://pixabay.com/get/57e0d741485baf14f1dc8460962e337b1c3d2e24e7e44f4e762d79ec974e_640.jpg' },
+      { id: 3, name: 'Product 3', imageUrl: 'https://pixabay.com/get/57e0d741485baf14f1dc8460962e337b1c3d2e24e7e44f4e762d79ec974e_640.jpg' },
+      { id: 4, name: 'Product 4', imageUrl: 'https://pixabay.com/get/57e0d741485baf14f1dc8460962e337b1c3d2e24e7e44f4e762d79ec974e_640.jpg' },
+      { id: 5, name: 'Product 5', imageUrl: 'https://pixabay.com/get/57e0d741485baf14f1dc8460962e337b1c3d2e24e7e44f4e762d79ec974e_640.jpg' }
+    ];
+  });
+
+  // Add product to cart
+  function addToCart(product) {
+    cart = [...cart, product];
+  }
 </script>
 <style>
   /* Styling remains the same as before */
 </style>
+<style>
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
 
+  .product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .product img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .cart {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+  }
+
+  .button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: #45a049;
+  }
+</style>
 <main>
   <div>
     <a href="https://svelte.dev/" target="_blank">
@@ -231,4 +288,28 @@ let currentDate = new Date();
     </div>
   {/if}
 </div>
+<h1>Product List</h1>
+
+  <div class="product-list">
+    {#each products as product}
+      <div class="product">
+        <img src={product.imageUrl} alt={product.name} />
+        <h3>{product.name}</h3>
+        <button class="button" on:click={() => addToCart(product)}>Add to Cart</button>
+      </div>
+    {/each}
+  </div>
+
+  <div class="cart">
+    <h2>Cart</h2>
+    {#if cart.length > 0}
+      <ul>
+        {#each cart as item}
+          <li>{item.name}</li>
+        {/each}
+      </ul>
+    {:else}
+      <p>Your cart is empty.</p>
+    {/if}
+  </div>
 </main>
